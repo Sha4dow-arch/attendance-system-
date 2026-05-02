@@ -1,0 +1,93 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "System user (Student, Teacher, or Admin)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["student", "teacher", "admin"] },
+        "displayName": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "preferredLanguage": { "type": "string" },
+        "enrolledCourseIds": { "type": "array", "items": { "type": "string" } },
+        "teachingCourseIds": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role", "displayName"]
+    },
+    "Course": {
+      "title": "Course",
+      "description": "A course subject containing students and a teacher",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "studentIds": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "teacherId"]
+    },
+    "AttendanceRecord": {
+      "title": "Attendance Record",
+      "description": "Daily attendance for a student in a course",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "courseId": { "type": "string" },
+        "studentId": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "status": { "type": "string", "enum": ["present", "late", "absent"] },
+        "markedBy": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["courseId", "studentId", "date", "status", "markedBy"]
+    },
+    "SystemSettings": {
+      "title": "System Settings",
+      "description": "Global settings managed by admins",
+      "type": "object",
+      "properties": {
+        "adminRegistrationCode": { "type": "string" },
+        "allowedLanguages": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "AuditLog": {
+      "title": "Audit Log",
+      "description": "Log of system actions for security and tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/courses/{courseId}": {
+      "schema": "Course",
+      "description": "Course information"
+    },
+    "/attendance/{recordId}": {
+      "schema": "AttendanceRecord",
+      "description": "Daily attendance records. ID can be courseId_studentId_date for easy lookup."
+    },
+    "/settings/global": {
+      "schema": "SystemSettings",
+      "description": "Global configuration"
+    },
+    "/auditLogs/{logId}": {
+      "schema": "AuditLog",
+      "description": "System activity logs"
+    }
+  }
+}
