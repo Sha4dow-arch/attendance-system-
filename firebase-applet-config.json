@@ -1,10 +1,10 @@
 {
-  "projectId": "gen-lang-client-0383808502",
-  "appId": "1:504382959824:web:507a1ef12185763b0b2ed5",
-  "apiKey": "AIzaSyAjPtpMJryZueU-XadhTDCoBpGg6I7Jqx8",
-  "authDomain": "gen-lang-client-0383808502.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-f0484957-9caf-43d0-b4bf-7acd3faaff00",
-  "storageBucket": "gen-lang-client-0383808502.firebasestorage.app",
-  "messagingSenderId": "504382959824",
+  "projectId": "student-attendance-syste-53836",
+  "appId": "1:399662883465:web:cf9c6b8b516c2ae408dc58",
+  "apiKey": "AIzaSyBljjcgFtDyP5-AozBaECcuP0vO96LZE7Q",
+  "authDomain": "student-attendance-syste-53836.firebaseapp.com",
+  "firestoreDatabaseId": "gfsr54fgfdregyre",
+  "storageBucket": "student-attendance-syste-53836.firebasestorage.app",
+  "messagingSenderId": "399662883465",
   "measurementId": ""
 }
