@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import { LogIn, Mail, Lock, AlertCircle, Shield, Activity } from 'lucide-react';
@@ -25,6 +25,21 @@ export default function Login() {
       setLoading(false);
     }
   };
+  const handleForgotPassword = async () => {
+  setError('');
+  if (!email) {
+    setError('Please enter your email first.');
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert('Password reset email sent! Check your inbox.');
+  } catch (err: any) {
+    setError(err.message || 'Failed to send reset email');
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 font-sans">
@@ -120,10 +135,17 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-slate-900 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-slate-800 active:scale-[0.98] transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-2 mt-4 disabled:opacity-50"
-            >
+              className="w-full bg-slate-900 text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-slate-800 active:scale-[0.98] transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-2 mt-4 disabled:opacity-50" >
               {loading ? 'Authenticating...' : 'Access Workspace'}
             </button>
+            <p className="mt-4 text-center text-sm text-slate-500">
+             <button
+             type="button"
+             onClick={handleForgotPassword}
+             className="text-blue-600 hover:text-blue-700 underline underline-offset-4 decoration-2 font-bold">
+             Forgot Password?
+  </button>
+</p>
           </form>
 
           <p className="mt-10 text-center text-sm text-slate-500">
