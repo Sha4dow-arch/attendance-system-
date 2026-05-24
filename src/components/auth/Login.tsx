@@ -90,6 +90,8 @@ export default function Login() {
             <p className="text-slate-500">Enter your credentials to manage your workspace.</p>
           </div>
 
+          
+
           {error && (
             <motion.div 
               initial={{ opacity: 0, y: -10 }}

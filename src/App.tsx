@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate, Router } from 'react-router-dom
 import { AuthProvider, useAuth } from './components/auth/AuthContext';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import GetStarted from './pages/GetStarted';
 import DashboardLayout from './components/layout/DashboardLayout';
 
 // Pages (to be implemented)
@@ -34,6 +35,7 @@ function AppRoutes() {
 
   return (
     <Routes>
+      <Route path="/get-started" element={!user ? <GetStarted /> : <Navigate to="/" />} />
       <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
       <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
       

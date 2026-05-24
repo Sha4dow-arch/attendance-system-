@@ -6,6 +6,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User, Shield, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { UserRole, AppUser } from '../../types';
+import { cn } from '../../lib/utils';
+import { ADMIN_CODES } from '../../lib/mockData';
 
 import { useAuth } from './AuthContext';
 
@@ -25,10 +27,13 @@ export default function Register() {
     setError('');
     setLoading(true);
 
-    if (role === 'admin' && adminCode !== 'ADMIN2026') {
-      setError('Invalid Admin Verification Code');
-      setLoading(false);
-      return;
+    if (role === 'admin') {
+      const normalized = adminCode.trim();
+      if (!ADMIN_CODES.includes(normalized)) {
+        setError('Invalid Admin Verification Code');
+        setLoading(false);
+        return;
+      }
     }
 
     try {
@@ -76,6 +81,8 @@ export default function Register() {
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Create Account</h1>
           <p className="text-slate-500 mt-2">Join our student management ecosystem</p>
         </div>
+
+        
 
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl text-red-700 text-sm flex items-center gap-3">
@@ -192,4 +199,3 @@ export default function Register() {
   );
 }
 
-import { cn } from '../../lib/utils';
