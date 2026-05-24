@@ -141,13 +141,8 @@ export default function Login() {
               {loading ? 'Authenticating...' : 'Access Workspace'}
             </button>
             <p className="mt-4 text-center text-sm text-slate-500">
-             <button
-             type="button"
-             onClick={handleForgotPassword}
-             className="text-blue-600 hover:text-blue-700 underline underline-offset-4 decoration-2 font-bold">
-             Forgot Password?
-  </button>
-</p>
+             <Link to="/forgot-password" className="text-blue-600 hover:text-blue-700 underline underline-offset-4 decoration-2 font-bold">Forgot Password?</Link>
+            </p>
           </form>
 
           <p className="mt-10 text-center text-sm text-slate-500">

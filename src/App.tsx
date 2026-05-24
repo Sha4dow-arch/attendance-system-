@@ -8,6 +8,7 @@ import { AuthProvider, useAuth } from './components/auth/AuthContext';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import GetStarted from './pages/GetStarted';
+import ForgotPassword from './pages/ForgotPassword';
 import DashboardLayout from './components/layout/DashboardLayout';
 
 // Pages (to be implemented)
@@ -38,6 +39,7 @@ function AppRoutes() {
       <Route path="/get-started" element={!user ? <GetStarted /> : <Navigate to="/" />} />
       <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
       <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
+      <Route path="/forgot-password" element={!user ? <ForgotPassword /> : <Navigate to="/" />} />
       
       <Route
         path="/*"
